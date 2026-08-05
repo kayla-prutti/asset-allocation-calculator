@@ -45,4 +45,5 @@ npm run build
 ```
 ref: a box that hold the value
 computed: a helper that watch the value in the box and calculate the answer
+onMounted: When this component first appears, fetch the data (Like useEffect in React)
 ```
