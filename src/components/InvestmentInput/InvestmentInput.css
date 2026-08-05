@@ -1,0 +1,51 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.field label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.currency-input {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid #cfd4dc;
+  border-radius: 6px;
+  background: white;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.currency-input:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  transform: scale(1.02);
+}
+
+.currency-input input {
+  width: 100%;
+  height: 100%;
+  padding-left: 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+}
+
+.currency-input.invalid {
+  border-color: #b42318;
+}
+
+.error {
+  margin: 0;
+  color: #b42318;
+  font-size: 14px;
+}

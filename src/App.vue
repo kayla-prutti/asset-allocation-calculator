@@ -1,11 +1,58 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import "./App.css";
+import { computed, ref } from "vue";
+import InvestmentInput from "./components/InvestmentInput/InvestmentInput.vue";
+import AllocationCard from "./components/AllocationCard/AllocationCard.vue";
+import { useExchangeRates } from "./composables/useExchangeRates";
+import { calculateAllocation } from "./utils/calculateAllocation";
+import { formatCrypto } from "./utils/formatters";
+
+const investmentAmount = ref<number | null>(null);
+
+const { rates, isLoading, error, loadRates } = useExchangeRates();
+
+const inputError = computed(() => {
+  if (investmentAmount.value === null) return "";
+
+  if (investmentAmount.value <= 0) {
+    return "Please enter an amount greater than 0.";
+  }
+
+  return "";
+});
+
+const allocation = computed(() => {
+  if (!rates.value || !investmentAmount.value) {
+    return null;
+  }
+
+  return calculateAllocation(investmentAmount.value, rates.value);
+});
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-</template>
+  <main class="container">
+    <h1>Wasanta Asset allocation calculator</h1>
 
-<style scoped></style>
+    <div class="calculator">
+      <div class="left-column">
+        <InvestmentInput
+          v-model="investmentAmount"
+          :error-message="inputError"
+        />
+      </div>
+
+      <div class="right-column">
+        <AllocationCard
+          title="70% BTC allocation"
+          :value="allocation ? formatCrypto(allocation.btcAmount) : ''"
+        />
+
+        <AllocationCard
+          title="30% ETH allocation"
+          :value="allocation ? formatCrypto(allocation.ethAmount) : ''"
+        />
+      </div>
+    </div>
+  </main>
+</template>
