@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import "./CurrencyInput.css";
 
-defineProps<{
+const {
+  modelValue,
+  label,
+  inputId,
+  placeholder,
+  currencySymbol,
+  errorMessage,
+} = defineProps<{
   modelValue: number | null;
   label: string;
   inputId: string;
@@ -16,6 +23,15 @@ const emit = defineEmits<{
 }>();
 
 const displayValue = ref("");
+
+watch(
+  () => modelValue,
+  (value) => {
+    if (value === null) {
+      displayValue.value = "";
+    }
+  }
+);
 
 function updateValue(event: Event) {
   const input = event.target as HTMLInputElement;

@@ -12,6 +12,10 @@ const investmentAmount = ref<number | null>(null);
 
 const { rates, error } = useExchangeRates();
 
+function resetInvestmentAmount() {
+  investmentAmount.value = null;
+}
+
 const inputError = computed(() => {
   if (investmentAmount.value === null) return "";
 
@@ -45,6 +49,15 @@ const allocation = computed(() => {
           currency-symbol="$"
           :error-message="inputError"
         />
+
+        <button
+          v-if="investmentAmount !== null"
+          class="reset-button"
+          type="button"
+          @click="resetInvestmentAmount"
+        >
+          Reset
+        </button>
       </div>
 
       <div class="right-column">
