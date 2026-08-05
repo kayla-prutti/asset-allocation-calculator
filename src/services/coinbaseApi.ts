@@ -18,10 +18,5 @@ export async function fetchCryptoRates(): Promise<CryptoRates> {
   const btc = Number(result.data.rates.BTC);
   const eth = Number(result.data.rates.ETH);
 
-  // Prevent invalid API values from reaching the calculator, in case API change to not number.
-  if (!Number.isFinite(btc) || !Number.isFinite(eth)) {
-    throw new Error("The exchange-rate response was invalid.");
-  }
-
   return { btc, eth };
 }

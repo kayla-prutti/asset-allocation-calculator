@@ -42,8 +42,9 @@ npm run build
 ```
 
 # What I learn from Vue
+
 ```
-ref: a box that hold the value
+ref: a box that hold the value (reactive data)
 computed: a helper that watch the value in the box and calculate the answer
 onMounted: When this component first appears, fetch the data (Like useEffect in React)
 ```

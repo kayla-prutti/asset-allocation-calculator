@@ -42,6 +42,7 @@ const allocation = computed(() => {
           label="Investable assets"
           input-id="investment-amount"
           placeholder="Please input amount"
+          currency-symbol="$"
           :error-message="inputError"
         />
       </div>

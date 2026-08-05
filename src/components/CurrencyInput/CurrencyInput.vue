@@ -2,22 +2,14 @@
 import { ref } from "vue";
 import "./CurrencyInput.css";
 
-withDefaults(
-  defineProps<{
-    modelValue: number | null;
-    label?: string;
-    inputId?: string;
-    placeholder?: string;
-    currencySymbol?: string;
-    errorMessage?: string;
-  }>(),
-  {
-    label: "Amount",
-    inputId: "currency-amount",
-    placeholder: "Enter an amount",
-    currencySymbol: "$",
-  },
-);
+defineProps<{
+  modelValue: number | null;
+  label: string;
+  inputId: string;
+  placeholder: string;
+  currencySymbol: string;
+  errorMessage?: string;
+}>();
 
 const emit = defineEmits<{
   "update:modelValue": [value: number | null];
@@ -27,31 +19,28 @@ const displayValue = ref("");
 
 function updateValue(event: Event) {
   const input = event.target as HTMLInputElement;
-
-  // Allow digits and one decimal point.
   const cleanedValue = input.value.replace(/,/g, "").replace(/[^\d.]/g, "");
-  const [integerPart = "", ...decimalParts] = cleanedValue.split(".");
-  const decimalPart = decimalParts.join("").slice(0, 2);
+  const [integerPart = "", decimalPart = ""] = cleanedValue.split(".");
+  const hasDecimal = cleanedValue.includes(".");
+  const limitedDecimal = decimalPart.slice(0, 2);
+  // convert integerPart to a number and add commas.
   const formattedInteger = integerPart
     ? Number(integerPart).toLocaleString("en-US")
     : "";
-  const hasDecimal = cleanedValue.includes(".");
 
   displayValue.value = hasDecimal
-    ? `${formattedInteger}.${decimalPart}`
+    ? `${formattedInteger}.${limitedDecimal}`
     : formattedInteger;
+
+  // update HTML input element
   input.value = displayValue.value;
 
-  if (!integerPart && !decimalPart) {
-    emit("update:modelValue", null);
-    return;
-  }
-
   const numericValue = Number(
-    `${integerPart || "0"}${hasDecimal ? `.${decimalPart}` : ""}`,
+    `${integerPart || "0"}${hasDecimal ? `.${limitedDecimal}` : ""}`
   );
 
-  emit("update:modelValue", Number.isFinite(numericValue) ? numericValue : null);
+  // Send the new value to the parent through v-model.
+  emit("update:modelValue", displayValue.value ? numericValue : null);
 }
 </script>
 
