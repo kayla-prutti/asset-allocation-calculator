@@ -45,7 +45,7 @@ function updateValue(event: Event) {
 </script>
 
 <template>
-  <div class="field">
+  <div class="currency-field">
     <label :for="inputId">{{ label }}</label>
 
     <div class="currency-input" :class="{ invalid: Boolean(errorMessage) }">
@@ -64,7 +64,7 @@ function updateValue(event: Event) {
       />
     </div>
 
-    <p v-if="errorMessage" :id="`${inputId}-error`" class="error">
+    <p v-if="errorMessage" :id="`${inputId}-error`" class="currency-error">
       {{ errorMessage }}
     </p>
   </div>

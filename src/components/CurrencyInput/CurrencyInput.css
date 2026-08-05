@@ -1,11 +1,11 @@
-.field {
+.currency-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.field label {
+.currency-field label {
   font-size: 18px;
   font-weight: 700;
 }
@@ -44,7 +44,7 @@
   border-color: #b42318;
 }
 
-.error {
+.currency-error {
   margin: 0;
   color: #b42318;
   font-size: 14px;
