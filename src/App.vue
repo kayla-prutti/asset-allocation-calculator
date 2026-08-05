@@ -10,7 +10,7 @@ import { formatCrypto } from "./utils/formatters";
 
 const investmentAmount = ref<number | null>(null);
 
-const { rates } = useExchangeRates();
+const { rates, error } = useExchangeRates();
 
 const inputError = computed(() => {
   if (investmentAmount.value === null) return "";
@@ -48,19 +48,30 @@ const allocation = computed(() => {
       </div>
 
       <div class="right-column">
-        <AllocationCard
-          inputId="btc-allocation"
-          label="70% BTC allocation"
-          placeholder="Calculated amount"
-          :value="allocation ? formatCrypto(allocation.btcAmount) : ''"
-        />
+        <div v-if="error" class="exchange-rate-error" role="alert">
+          <span class="error-icon" aria-hidden="true">!</span>
+          <div>
+            <p class="error-title">Unable to load crypto prices</p>
+            <p>{{ error }}</p>
+            <p class="error-help">Please refresh the page to try again.</p>
+          </div>
+        </div>
 
-        <AllocationCard
-          inputId="eth-allocation"
-          label="30% ETH allocation"
-          placeholder="Calculated amount"
-          :value="allocation ? formatCrypto(allocation.ethAmount) : ''"
-        />
+        <template v-else>
+          <AllocationCard
+            inputId="btc-allocation"
+            label="70% BTC allocation"
+            placeholder="Calculated amount"
+            :value="allocation ? formatCrypto(allocation.btcAmount) : ''"
+          />
+
+          <AllocationCard
+            inputId="eth-allocation"
+            label="30% ETH allocation"
+            placeholder="Calculated amount"
+            :value="allocation ? formatCrypto(allocation.ethAmount) : ''"
+          />
+        </template>
       </div>
     </div>
   </main>

@@ -4,14 +4,18 @@ import type { CryptoRates } from "@/types/exchangeRates";
 
 export function useExchangeRates() {
   const rates = ref<CryptoRates | null>(null);
+  const error = ref<string | null>(null);
 
   onMounted(async () => {
     try {
       rates.value = await fetchCryptoRates();
-    } catch {
-      rates.value = null;
+    } catch (requestError) {
+      error.value =
+        requestError instanceof Error
+          ? requestError.message
+          : "Unable to load exchange rates.";
     }
   });
 
-  return { rates };
+  return { rates, error };
 }
