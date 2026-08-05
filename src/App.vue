@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import "./App.css";
 import { computed, ref } from "vue";
-import InvestmentInput from "./components/InvestmentInput/InvestmentInput.vue";
+
+import CurrencyInput from "./components/CurrencyInput/CurrencyInput.vue";
 import AllocationCard from "./components/AllocationCard/AllocationCard.vue";
 import { useExchangeRates } from "./composables/useExchangeRates";
 import { calculateAllocation } from "./utils/calculateAllocation";
@@ -9,7 +10,7 @@ import { formatCrypto } from "./utils/formatters";
 
 const investmentAmount = ref<number | null>(null);
 
-const { rates, isLoading, error, loadRates } = useExchangeRates();
+const { rates } = useExchangeRates();
 
 const inputError = computed(() => {
   if (investmentAmount.value === null) return "";
@@ -32,12 +33,15 @@ const allocation = computed(() => {
 
 <template>
   <main class="container">
-    <h1>Wasanta Asset allocation calculator</h1>
+    <h1>Asset allocation calculator</h1>
 
     <div class="calculator">
       <div class="left-column">
-        <InvestmentInput
+        <CurrencyInput
           v-model="investmentAmount"
+          label="Investable assets"
+          input-id="investment-amount"
+          placeholder="Please input amount"
           :error-message="inputError"
         />
       </div>

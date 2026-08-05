@@ -41,4 +41,8 @@ npm run dev
 npm run build
 ```
 
-# asset-allocation-calculator
+# What I learn from Vue
+```
+ref: a box that hold the value
+computed: a helper that watch the value in the box and calculate the answer
+```
