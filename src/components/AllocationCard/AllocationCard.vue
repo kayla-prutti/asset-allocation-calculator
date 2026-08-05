@@ -2,17 +2,25 @@
 import "./AllocationCard.css";
 
 defineProps<{
-  title: string;
+  label: string;
+  inputId: string;
+  placeholder: string;
   value: string;
 }>();
 </script>
 
 <template>
   <div class="allocation-field">
-    <label>{{ title }}</label>
+    <label :for="inputId">{{ label }}</label>
 
     <div class="allocation-input">
-      <input type="text" :value="value" readonly />
+      <input
+        :id="inputId"
+        type="text"
+        :placeholder="placeholder"
+        :value="value"
+        readonly
+      />
     </div>
   </div>
 </template>

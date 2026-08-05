@@ -49,12 +49,16 @@ const allocation = computed(() => {
 
       <div class="right-column">
         <AllocationCard
-          title="70% BTC allocation"
+          inputId="btc-allocation"
+          label="70% BTC allocation"
+          placeholder="Calculated amount"
           :value="allocation ? formatCrypto(allocation.btcAmount) : ''"
         />
 
         <AllocationCard
-          title="30% ETH allocation"
+          inputId="eth-allocation"
+          label="30% ETH allocation"
+          placeholder="Calculated amount"
           :value="allocation ? formatCrypto(allocation.ethAmount) : ''"
         />
       </div>
