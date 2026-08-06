@@ -5,10 +5,11 @@
   --navy-light: #193056;
   --blue: #1697ff;
   --blue-dark: #0875d1;
+  --blue-hover: #0664b8;
   --surface: #ffffff;
   --label: #d1cfcf;
   --border: #54b5ff;
-  --error: #b42318;
+  --error: #fc8181;
 }
 
 body {
@@ -55,15 +56,15 @@ body {
   color: white;
   font: inherit;
   font-weight: 600;
-  background: var(--blue);
-  border: 1px solid var(--blue);
+  background: var(--blue-dark);
+  border: 1px solid var(--blue-dark);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .reset-button:hover {
-  background: var(--blue-dark);
-  border-color: var(--blue-dark);
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
 }
 
 .right-column {
@@ -120,15 +121,21 @@ body {
   color: white;
   font: inherit;
   font-weight: 600;
-  background: var(--blue);
-  border: 1px solid var(--blue);
+  background: var(--blue-dark);
+  border: 1px solid var(--blue-dark);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .error-retry:hover {
-  background: var(--blue-dark);
-  border-color: var(--blue-dark);
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
+}
+
+.reset-button:focus-visible,
+.error-retry:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
