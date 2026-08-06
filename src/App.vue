@@ -6,7 +6,7 @@ import CurrencyInput from "./components/CurrencyInput/CurrencyInput.vue";
 import AllocationCard from "./components/AllocationCard/AllocationCard.vue";
 import { useExchangeRates } from "./composables/useExchangeRates";
 import { calculateAllocation } from "./utils/calculateAllocation";
-import { formatCrypto } from "./utils/formatters";
+import { formatNumber } from "./utils/formatters";
 
 const investmentAmount = ref<number | null>(null);
 
@@ -77,14 +77,14 @@ const allocation = computed(() => {
             inputId="btc-allocation"
             label="70% BTC allocation"
             placeholder="Calculated amount"
-            :value="allocation ? formatCrypto(allocation.btcAmount) : ''"
+            :value="allocation ? formatNumber(allocation.btcAmount, 2, 8) : ''"
           />
 
           <AllocationCard
             inputId="eth-allocation"
             label="30% ETH allocation"
             placeholder="Calculated amount"
-            :value="allocation ? formatCrypto(allocation.ethAmount) : ''"
+            :value="allocation ? formatNumber(allocation.ethAmount, 2, 8) : ''"
           />
         </template>
       </div>

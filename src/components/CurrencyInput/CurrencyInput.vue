@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from "vue";
 import "./CurrencyInput.css";
+import { formatNumber } from "@/utils/formatters";
 
 const {
   modelValue,
@@ -45,7 +46,9 @@ function updateValue(event: Event) {
   // convert integerPart to a number and add commas.
   const formattedInteger = integerPart
     ? Number(integerPart).toLocaleString("en-US")
-    : "";
+    : hasDecimal
+      ? "0"
+      : "";
 
   displayValue.value = hasDecimal
     ? `${formattedInteger}.${limitedDecimal}`
@@ -60,6 +63,16 @@ function updateValue(event: Event) {
 
   // Send the new value to the parent through v-model.
   emit("update:modelValue", displayValue.value ? numericValue : null);
+}
+
+function formatOnBlur() {
+  if (!displayValue.value) return;
+
+  const numericValue = Number(displayValue.value.replace(/,/g, ""));
+
+  if (Number.isFinite(numericValue)) {
+    displayValue.value = formatNumber(numericValue, 2, 2);
+  }
 }
 </script>
 
@@ -81,6 +94,7 @@ function updateValue(event: Event) {
         :aria-invalid="Boolean(errorMessage)"
         :aria-describedby="errorMessage ? `${inputId}-error` : undefined"
         @input="updateValue"
+        @blur="formatOnBlur"
       />
     </div>
 
