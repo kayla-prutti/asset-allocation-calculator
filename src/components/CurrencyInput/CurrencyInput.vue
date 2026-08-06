@@ -85,7 +85,13 @@ function formatOnBlur() {
       />
     </div>
 
-    <p v-if="errorMessage" :id="`${inputId}-error`" class="currency-error">
+    <p
+      v-if="errorMessage"
+      :id="`${inputId}-error`"
+      class="currency-error"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       {{ errorMessage }}
     </p>
   </div>

@@ -9,7 +9,7 @@ A Vue 3 calculator that splits a USD investment amount into a 70% Bitcoin and 30
 - Calculates the amount of BTC and ETH to buy for a 70/30 allocation
 - Shows a clear error state and lets the user retry a failed rate request
 - Includes a Reset button for clearing the investment amount
-- Supports keyboard users and screen readers with labelled inputs, validation feedback, focus restoration, and live result announcements
+- Supports keyboard users and screen readers with labelled inputs
 - Uses a responsive layout for desktop and mobile screens
 
 ## How the calculation works
@@ -58,4 +58,4 @@ src/
 ├── composables/ Exchange-rate loading, error, and retry logic
 ├── services/ Coinbase API request
 ├── types/ Shared TypeScript interface for CryptoRates
-└── utils/ Allocation calculation and number formatting
+└── utils/ Allocation calculation and formatting
