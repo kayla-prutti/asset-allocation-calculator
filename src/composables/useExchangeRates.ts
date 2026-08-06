@@ -8,10 +8,9 @@ export function useExchangeRates() {
   // A loading state is intentionally omitted because fast requests would create
   // a distracting flash without giving the user useful feedback.
   async function loadRates() {
-    error.value = null;
-
     try {
       rates.value = await fetchCryptoRates();
+      error.value = null;
     } catch (requestError) {
       error.value =
         requestError instanceof Error
