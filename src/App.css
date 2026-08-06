@@ -1,7 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
+:root {
+  --navy: #061121;
+  --navy-light: #193056;
+  --blue: #1697ff;
+  --blue-dark: #0875d1;
+  --surface: #ffffff;
+  --label: #d1cfcf;
+  --border: #54b5ff;
+  --error: #b42318;
+}
+
 body {
+  min-height: 100vh;
+  color: white;
   font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
 }
 
 .container {
@@ -12,7 +26,10 @@ body {
 
 .container h1 {
   margin: 0 0 56px;
+  color: white;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
   line-height: 1.05;
 }
 
@@ -35,18 +52,18 @@ body {
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  color: #1d4ed8;
+  color: white;
   font: inherit;
   font-weight: 600;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: var(--blue);
+  border: 1px solid var(--blue);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .reset-button:hover {
-  background: #dbeafe;
-  border-color: #93c5fd;
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
 }
 
 .right-column {
@@ -62,9 +79,9 @@ body {
   align-items: flex-start;
   gap: 12px;
   padding: 20px;
-  color: #b42318;
-  background: #fff1f0;
-  border: 1px solid #fecdca;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #f97066;
   border-radius: 8px;
 }
 
@@ -81,7 +98,7 @@ body {
   color: white;
   font-size: 14px;
   font-weight: 700;
-  background: #b42318;
+  background: #f04438;
   border-radius: 50%;
 }
 
@@ -100,18 +117,18 @@ body {
 .error-retry {
   margin-top: 12px;
   padding: 8px 12px;
-  color: #b42318;
+  color: white;
   font: inherit;
   font-weight: 600;
-  background: white;
-  border: 1px solid #fecdca;
+  background: var(--blue);
+  border: 1px solid var(--blue);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .error-retry:hover {
-  background: #f6d6d4;
-  border-color: #b42318;
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
 }
 
 @media (max-width: 768px) {
