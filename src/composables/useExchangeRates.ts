@@ -5,9 +5,8 @@ import type { CryptoRates } from "@/types/exchangeRates";
 export function useExchangeRates() {
   const rates = ref<CryptoRates | null>(null);
   const error = ref<string | null>(null);
-
-  // TODO: Add a loading state to the "Try Again" button if API requests become noticeably slow.
-  // Not adding a loading state here for now - a fast request would just flash on/off.
+  // A loading state is intentionally omitted because fast requests would create
+  // a distracting flash without giving the user useful feedback.
   async function loadRates() {
     error.value = null;
 
