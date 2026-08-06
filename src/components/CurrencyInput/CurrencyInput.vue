@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from "vue";
 import "./CurrencyInput.css";
-import { formatNumber } from "@/utils/formatters";
+import { formatCurrencyInput, formatNumber } from "@/utils/formatters";
 
 const {
   modelValue,
@@ -39,39 +39,26 @@ watch(
 
 function updateValue(event: Event) {
   const input = event.target as HTMLInputElement;
-  const cleanedValue = input.value.replace(/,/g, "").replace(/[^\d.]/g, "");
-  const [integerPart = "", decimalPart = ""] = cleanedValue.split(".");
-  const hasDecimal = cleanedValue.includes(".");
-  const limitedDecimal = decimalPart.slice(0, 2);
-  // convert integerPart to a number and add commas.
-  const formattedInteger = integerPart
-    ? Number(integerPart).toLocaleString("en-US")
-    : hasDecimal
-      ? "0"
-      : "";
+  const formattedValue = formatCurrencyInput(input.value);
 
-  displayValue.value = hasDecimal
-    ? `${formattedInteger}.${limitedDecimal}`
-    : formattedInteger;
-
-  // update HTML input element
+  displayValue.value = formattedValue.displayValue;
   input.value = displayValue.value;
-
-  const numericValue = Number(
-    `${integerPart || "0"}${hasDecimal ? `.${limitedDecimal}` : ""}`
-  );
-
-  // Send the new value to the parent through v-model.
-  emit("update:modelValue", displayValue.value ? numericValue : null);
+  emit("update:modelValue", formattedValue.numericValue);
 }
 
 function formatOnBlur() {
   if (!displayValue.value) return;
 
+  const [, decimalPart = ""] = displayValue.value.split(".");
+  const hasDecimalDigits = decimalPart.length > 0;
   const numericValue = Number(displayValue.value.replace(/,/g, ""));
 
   if (Number.isFinite(numericValue)) {
-    displayValue.value = formatNumber(numericValue, 2, 2);
+    displayValue.value = formatNumber(
+      numericValue,
+      hasDecimalDigits ? 2 : 0,
+      2
+    );
   }
 }
 </script>
