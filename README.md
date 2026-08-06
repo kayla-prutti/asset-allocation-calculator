@@ -46,6 +46,7 @@ npm run build
 ```
 ref: a box that hold the value (reactive data)
 watch: tells Vue to run code whenever a specific value changes.
+nextTick: waits for Vue to finish updating the DOM before running the next line of code.
 computed: a helper that watch the value in the box and calculate the answer
 onMounted: When this component first appears, fetch the data (Like useEffect in React)
 ```

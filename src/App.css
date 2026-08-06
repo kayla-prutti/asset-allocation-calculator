@@ -89,8 +89,29 @@ body {
   font-weight: 700;
 }
 
+.error-message {
+  white-space: pre-line;
+}
+
 .error-help {
   margin-top: 8px;
+}
+
+.error-retry {
+  margin-top: 12px;
+  padding: 8px 12px;
+  color: #b42318;
+  font: inherit;
+  font-weight: 600;
+  background: white;
+  border: 1px solid #fecdca;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.error-retry:hover {
+  background: #f6d6d4;
+  border-color: #b42318;
 }
 
 @media (max-width: 768px) {

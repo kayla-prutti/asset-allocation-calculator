@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, nextTick } from "vue";
 import "./CurrencyInput.css";
 
 const {
@@ -23,12 +23,15 @@ const emit = defineEmits<{
 }>();
 
 const displayValue = ref("");
+const inputElement = ref<HTMLInputElement | null>(null);
 
 watch(
   () => modelValue,
-  (value) => {
+  async (value) => {
     if (value === null) {
       displayValue.value = "";
+      await nextTick();
+      inputElement.value?.focus();
     }
   }
 );
@@ -68,6 +71,7 @@ function updateValue(event: Event) {
       <span aria-hidden="true">{{ currencySymbol }}</span>
 
       <input
+        ref="inputElement"
         :id="inputId"
         type="text"
         inputmode="decimal"

@@ -12,7 +12,9 @@ export async function fetchCryptoRates(): Promise<CryptoRates> {
   const response = await fetch(EXCHANGE_RATES_URL);
 
   if (!response.ok) {
-    throw new Error(`Unable to load exchange rates: ${response.status}`);
+    throw new Error(
+      `Due to issue with ${response.status} error.\nCheck your connection, then try again.`
+    );
   }
 
   const result: CoinbaseExchangeRatesResponse = await response.json();

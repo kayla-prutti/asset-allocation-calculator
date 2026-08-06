@@ -10,7 +10,7 @@ import { formatCrypto } from "./utils/formatters";
 
 const investmentAmount = ref<number | null>(null);
 
-const { rates, error } = useExchangeRates();
+const { rates, error, loadRates } = useExchangeRates();
 
 function resetInvestmentAmount() {
   investmentAmount.value = null;
@@ -65,8 +65,10 @@ const allocation = computed(() => {
           <span class="error-icon" aria-hidden="true">!</span>
           <div>
             <p class="error-title">Unable to load crypto prices</p>
-            <p>{{ error }}</p>
-            <p class="error-help">Please refresh the page to try again.</p>
+            <p class="error-message">{{ error }}</p>
+            <button class="error-retry" type="button" @click="loadRates">
+              Try again
+            </button>
           </div>
         </div>
 

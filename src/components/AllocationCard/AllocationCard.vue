@@ -13,7 +13,7 @@ defineProps<{
   <div class="allocation-field">
     <label :for="inputId">{{ label }}</label>
 
-    <div class="allocation-input">
+    <div class="allocation-input" aria-live="polite" aria-atomic="true">
       <input
         :id="inputId"
         type="text"

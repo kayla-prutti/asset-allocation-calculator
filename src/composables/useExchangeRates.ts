@@ -6,7 +6,9 @@ export function useExchangeRates() {
   const rates = ref<CryptoRates | null>(null);
   const error = ref<string | null>(null);
 
-  onMounted(async () => {
+  async function loadRates() {
+    error.value = null;
+
     try {
       rates.value = await fetchCryptoRates();
     } catch (requestError) {
@@ -15,7 +17,9 @@ export function useExchangeRates() {
           ? requestError.message
           : "Unable to load exchange rates.";
     }
-  });
+  }
 
-  return { rates, error };
+  onMounted(loadRates);
+
+  return { rates, error, loadRates };
 }
