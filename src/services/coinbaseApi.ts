@@ -1,7 +1,11 @@
-import type {
-  CoinbaseExchangeRatesResponse,
-  CryptoRates,
-} from "@/types/exchangeRates";
+import type { CryptoRates } from "@/types/exchangeRates";
+
+interface CoinbaseExchangeRatesResponse {
+  data: {
+    currency: string;
+    rates: Record<string, string>;
+  };
+}
 
 const EXCHANGE_RATES_URL =
   "https://api.coinbase.com/v2/exchange-rates?currency=USD";

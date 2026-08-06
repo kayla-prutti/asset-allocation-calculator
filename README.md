@@ -54,8 +54,8 @@ npm run preview     # Preview the production build
 ## Project structure
 
 src/
-├── components/       Reusable input and allocation-result components
-├── composables/      Exchange-rate loading, error, and retry logic
-├── services/         Coinbase API request
-├── types/            Shared TypeScript interfaces for API responses and app data
-└── utils/            Allocation calculation and number formatting
+├── components/ Reusable input and allocation-result components
+├── composables/ Exchange-rate loading, error, and retry logic
+├── services/ Coinbase API request
+├── types/ Shared TypeScript interface for CryptoRates
+└── utils/ Allocation calculation and number formatting

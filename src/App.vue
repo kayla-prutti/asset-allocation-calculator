@@ -16,7 +16,7 @@ function resetInvestmentAmount() {
   investmentAmount.value = null;
 }
 
-const inputError = computed(() => {
+const investmentAmountError = computed(() => {
   if (investmentAmount.value === null) return "";
 
   if (investmentAmount.value <= 0) {
@@ -47,7 +47,7 @@ const allocation = computed(() => {
           input-id="investment-amount"
           placeholder="Please input amount"
           currency-symbol="$"
-          :error-message="inputError"
+          :error-message="investmentAmountError"
         />
 
         <button
