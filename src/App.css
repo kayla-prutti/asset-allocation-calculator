@@ -6,15 +6,25 @@
   --blue: #1697ff;
   --blue-dark: #0875d1;
   --blue-hover: #0664b8;
-  --surface: #ffffff;
-  --label: #d1cfcf;
-  --border: #54b5ff;
-  --error: #fc8181;
+  --white: #ffffff;
+  --label-neutral: #d1cfcf;
+  --border-blue: #54b5ff;
+  --error-red: #fc8181;
+  --space-small: 8px;
+  --space-medium: 12px;
+  --space-large: 16px;
+  --field-gap: var(--space-small);
+  --label-size: 18px;
+  --control-height: 50px;
+  --control-padding: 0 var(--space-large);
+  --button-padding: var(--space-small) var(--space-medium);
+  --radius: 6px;
+  --radius-large: 8px;
 }
 
 body {
   min-height: 100vh;
-  color: white;
+  color: var(--white);
   font-family: "Inter", sans-serif;
   background: linear-gradient(135deg, var(--navy), var(--navy-light));
 }
@@ -27,7 +37,7 @@ body {
 
 .container h1 {
   margin: 0 0 56px;
-  color: white;
+  color: var(--white);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -45,20 +55,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--space-medium);
 }
 
 .reset-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
-  color: white;
+  padding: var(--button-padding);
+  color: var(--white);
   font: inherit;
   font-weight: 600;
   background: var(--blue-dark);
   border: 1px solid var(--blue-dark);
-  border-radius: 6px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
@@ -78,12 +88,12 @@ body {
 .exchange-rate-error {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--space-medium);
   padding: 20px;
-  color: white;
+  color: var(--white);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid #f97066;
-  border-radius: 8px;
+  border-radius: var(--radius-large);
 }
 
 .exchange-rate-error p {
@@ -96,7 +106,7 @@ body {
   width: 22px;
   height: 22px;
   place-items: center;
-  color: white;
+  color: var(--white);
   font-size: 14px;
   font-weight: 700;
   background: #f04438;
@@ -112,18 +122,18 @@ body {
 }
 
 .error-help {
-  margin-top: 8px;
+  margin-top: var(--space-small);
 }
 
 .error-retry {
-  margin-top: 12px;
-  padding: 8px 12px;
-  color: white;
+  margin-top: var(--space-medium);
+  padding: var(--button-padding);
+  color: var(--white);
   font: inherit;
   font-weight: 600;
   background: var(--blue-dark);
   border: 1px solid var(--blue-dark);
-  border-radius: 6px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
@@ -134,7 +144,7 @@ body {
 
 .reset-button:focus-visible,
 .error-retry:focus-visible {
-  outline: 3px solid white;
+  outline: 3px solid var(--white);
   outline-offset: 2px;
 }
 

@@ -1,25 +1,25 @@
 .currency-field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--field-gap);
   width: 100%;
 }
 
 .currency-field label {
-  color: var(--label);
-  font-size: 18px;
+  color: var(--label-neutral);
+  font-size: var(--label-size);
   font-weight: 700;
 }
 
 .currency-input {
   display: flex;
   align-items: center;
-  height: 50px;
-  padding: 0 16px;
+  height: var(--control-height);
+  padding: var(--control-padding);
   color: var(--navy);
-  border: 2px solid var(--border);
-  border-radius: 6px;
-  background: var(--surface);
+  border: 2px solid var(--border-blue);
+  border-radius: var(--radius);
+  background: var(--white);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -44,11 +44,11 @@
 }
 
 .currency-input.invalid {
-  border-color: var(--error);
+  border-color: var(--error-red);
 }
 
 .currency-error {
   margin: 0;
-  color: var(--error);
+  color: var(--error-red);
   font-size: 14px;
 }
