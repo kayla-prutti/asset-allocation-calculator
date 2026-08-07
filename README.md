@@ -2,6 +2,10 @@
 
 A Vue 3 calculator that splits a USD investment amount into a 70% Bitcoin and 30% Ethereum allocation using live Coinbase exchange rates.
 
+## Live app
+
+[Open the calculator](https://kayla-prutti.github.io/asset-allocation-calculator/)
+
 ## Features
 
 - Accepts and formats USD input with commas and up to two decimal places
@@ -50,12 +54,3 @@ npm run type-check  # Check TypeScript and Vue types
 npm run build       # Type-check and create a production build
 npm run preview     # Preview the production build
 ```
-
-## Project structure
-
-src/
-├── components/ Reusable input and allocation-result components
-├── composables/ Exchange-rate loading, error, and retry logic
-├── services/ Coinbase API request
-├── types/ Shared TypeScript interface for CryptoRates
-└── utils/ Allocation calculation and formatting
