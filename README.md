@@ -1,6 +1,6 @@
 # Asset Allocation Calculator
 
-A Vue 3 calculator that splits a USD investment amount into a 70% Bitcoin and 30% Ethereum allocation using live Coinbase exchange rates.
+A Vue 3 portfolio planner that turns a USD investment amount and a custom crypto mix (2-5 assets, weighted by percentage) into exactly how much of each asset to buy, using live Coinbase exchange rates.
 
 ## Live app
 
@@ -8,25 +8,42 @@ A Vue 3 calculator that splits a USD investment amount into a 70% Bitcoin and 30
 
 ## Features
 
-- Accepts and formats USD input with commas and up to two decimal places
-- Fetches current BTC and ETH rates from the Coinbase exchange-rates API
-- Calculates the amount of BTC and ETH to buy for a 70/30 allocation
-- Shows a clear error state and lets the user retry a failed rate request
-- Includes a Reset button for clearing the investment amount
-- Supports keyboard users and screen readers with labelled inputs
+- Enter an investment amount with USD formatting (commas, up to two decimal places), validated against a $0-$1 trillion range
+- Build a custom mix of 2-5 crypto assets, searchable from Coinbase's live currency list (falls back to a small built-in list if that request fails)
+- Set each asset's weight by hand; the mix must total exactly 100%, with inline error styling when it's under or over
+- See the resulting mix as an interactive donut chart and legend — hover, focus, or click a slice or legend row to highlight it, with a tooltip that follows the highlighted slice
+- Once the amount and mix are both valid, each asset shows its dollar allocation and the exact amount of crypto it buys at current rates
+- The allocation panel greys out while the inputs are incomplete or invalid, so it's clear the numbers aren't final yet
+- Shows a clear error state and lets the user retry a failed exchange-rate request
+- Reset buttons for clearing the investment amount and restoring the default mix
+- Supports keyboard users and screen readers with labelled inputs, `aria-invalid`/`role="alert"` error states, and a listbox-pattern asset picker
 - Uses a responsive layout for desktop and mobile screens
 
 ## How the calculation works
 
 Coinbase returns the amount of cryptocurrency available for one US dollar. For example, a BTC rate of `0.000015` means one dollar buys `0.000015 BTC`.
 
-For an investment amount `I`:
+For an investment amount `I` and an asset with weight `w` (as a percentage) and exchange rate `r`:
 
-BTC amount = I × 0.70 × BTC rate
-ETH amount = I × 0.30 × ETH rate
+```
+dollar amount = I × (w / 100)
+crypto amount = dollar amount × r
+```
 
-Rates are fetched from:
+This is applied per asset across the whole mix, so `Σw` must equal 100% for the totals to add up to the full investment amount.
+
+Rates and the available currency list are fetched from:
 `https://api.coinbase.com/v2/exchange-rates?currency=USD`
+`https://api.coinbase.com/v2/currencies/crypto`
+
+## Project structure
+
+- `App.vue` — owns the shared state (investment amount, asset mix, live rates) and renders the two main panels
+- `PortfolioEditor` (+ `CurrencyInput`, `CryptoInput`) — the "Choose assets and amount" panel
+- `AllocationSummary` (+ `AllocationChart`, `AllocationLegend`) — the "Your crypto allocation" panel
+- `composables/` — `useExchangeRates`, `useCryptoCurrencies` (data fetching)
+- `utils/` — `portfolio.ts` (mix math/validation), `formatters.ts` (number/currency formatting)
+- `services/coinbaseApi.ts` — the Coinbase API client
 
 ## Tech stack
 

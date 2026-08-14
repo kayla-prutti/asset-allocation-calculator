@@ -1,4 +1,8 @@
-import type { CryptoRates } from "@/types/exchangeRates";
+import type {
+  CryptoCurrency,
+  CryptoRates,
+  CryptoSymbol,
+} from "@/types/exchangeRates";
 
 interface CoinbaseExchangeRatesResponse {
   data: {
@@ -9,8 +13,54 @@ interface CoinbaseExchangeRatesResponse {
 
 const EXCHANGE_RATES_URL =
   "https://api.coinbase.com/v2/exchange-rates?currency=USD";
+const CRYPTO_CURRENCIES_URL = "https://api.coinbase.com/v2/currencies/crypto";
 
-export async function fetchCryptoRates(): Promise<CryptoRates> {
+interface CoinbaseCryptoCurrency {
+  code: string;
+  name: string;
+  color?: string;
+  sort_index?: number;
+}
+
+export async function fetchCryptoCurrencies(): Promise<CryptoCurrency[]> {
+  const [currenciesResponse, ratesResponse] = await Promise.all([
+    fetch(CRYPTO_CURRENCIES_URL),
+    fetch(EXCHANGE_RATES_URL),
+  ]);
+
+  if (!currenciesResponse.ok || !ratesResponse.ok) {
+    throw new Error("Unable to load the available cryptocurrencies.");
+  }
+
+  const currenciesPayload:
+    CoinbaseCryptoCurrency[] | { data: CoinbaseCryptoCurrency[] } =
+    await currenciesResponse.json();
+  const ratesPayload: CoinbaseExchangeRatesResponse =
+    await ratesResponse.json();
+  const currencies = Array.isArray(currenciesPayload)
+    ? currenciesPayload
+    : currenciesPayload.data;
+
+  return currencies
+    .filter((currency) =>
+      Number.isFinite(Number(ratesPayload.data.rates[currency.code]))
+    )
+    .map((currency) => ({
+      code: currency.code,
+      name: currency.name,
+      color: currency.color,
+      sortIndex: currency.sort_index,
+    }))
+    .sort(
+      (first, second) =>
+        (first.sortIndex ?? 9999) - (second.sortIndex ?? 9999) ||
+        first.name.localeCompare(second.name)
+    );
+}
+
+export async function fetchCryptoRates(
+  symbols: CryptoSymbol[]
+): Promise<CryptoRates> {
   let response: Response;
 
   try {
@@ -31,12 +81,13 @@ export async function fetchCryptoRates(): Promise<CryptoRates> {
 
   const result: CoinbaseExchangeRatesResponse = await response.json();
 
-  const btc = Number(result.data.rates.BTC);
-  const eth = Number(result.data.rates.ETH);
+  const parsedRates = Object.fromEntries(
+    symbols.map((symbol) => [symbol, Number(result.data.rates[symbol])])
+  ) as CryptoRates;
 
-  if (!Number.isFinite(btc) || !Number.isFinite(eth)) {
+  if (symbols.some((symbol) => !Number.isFinite(parsedRates[symbol]))) {
     throw new Error("The exchange-rate response was invalid.");
   }
 
-  return { btc, eth };
+  return parsedRates;
 }

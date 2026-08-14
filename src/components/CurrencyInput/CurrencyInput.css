@@ -4,51 +4,62 @@
   gap: var(--field-gap);
   width: 100%;
 }
-
-.currency-field label {
-  color: var(--label-neutral);
-  font-size: var(--label-size);
-  font-weight: 700;
+.currency-field-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
-
+.currency-field label {
+  color: var(--ink);
+  font-size: var(--label-size);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
 .currency-input {
   display: flex;
   align-items: center;
   height: var(--control-height);
-  padding: var(--control-padding);
-  color: var(--navy);
-  border: 2px solid var(--border-blue);
-  border-radius: var(--radius);
-  background: var(--white);
+  padding: 0 17px;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid #b9c7bd;
+  border-radius: 12px;
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
-
 .currency-input:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(22, 135, 249, 0.16);
-  transform: scale(1.02);
+  border-color: var(--forest);
+  box-shadow: 0 0 0 4px rgba(30, 91, 70, 0.12);
 }
-
+.currency-input > span {
+  color: var(--forest);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
 .currency-input input {
   width: 100%;
   height: 100%;
   padding-left: 8px;
-  border: none;
-  outline: none;
+  color: var(--ink);
+  font-size: 1.18rem;
+  font-weight: 700;
   background: transparent;
-  color: var(--navy);
-  font: inherit;
+  border: 0;
+  outline: 0;
 }
-
+.currency-input input::placeholder {
+  color: #a6b0a8;
+  font-weight: 600;
+}
 .currency-input.invalid {
-  border-color: var(--error-red);
+  border-color: var(--danger);
+  box-shadow: 0 0 0 4px rgba(181, 59, 42, 0.1);
 }
-
 .currency-error {
   margin: 0;
-  color: var(--error-red);
-  font-size: 14px;
+  color: var(--danger);
+  font-size: 0.78rem;
+  font-weight: 650;
 }
