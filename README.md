@@ -1,6 +1,6 @@
 # Asset Allocation Calculator
 
-A Vue 3 portfolio planner that turns a USD investment amount and a custom crypto mix (2-5 assets, weighted by percentage) into exactly how much of each asset to buy, using live Coinbase exchange rates.
+A React portfolio planner that turns a USD investment amount and a custom crypto mix (2-5 assets, weighted by percentage) into exactly how much of each asset to buy, using live Coinbase exchange rates.
 
 ## Live app
 
@@ -38,16 +38,16 @@ Rates and the available currency list are fetched from:
 
 ## Project structure
 
-- `App.vue` — owns the shared state (investment amount, asset mix, live rates) and renders the two main panels
+- `App.tsx` — owns the shared state (investment amount, asset mix, live rates) and renders the two main panels
 - `PortfolioEditor` (+ `CurrencyInput`, `CryptoInput`) — the "Choose assets and amount" panel
 - `AllocationSummary` (+ `AllocationChart`, `AllocationLegend`) — the "Your crypto allocation" panel
-- `composables/` — `useExchangeRates`, `useCryptoCurrencies` (data fetching)
+- `hooks/` — `useExchangeRates`, `useCryptoCurrencies` (data fetching)
 - `utils/` — `portfolio.ts` (mix math/validation), `formatters.ts` (number/currency formatting)
 - `services/coinbaseApi.ts` — the Coinbase API client
 
 ## Tech stack
 
-- Vue 3
+- React 19
 - TypeScript
 - Vite
 - CSS custom properties for shared design tokens
@@ -67,7 +67,7 @@ Open the local URL shown in the terminal, usually `http://localhost:5173`.
 
 ```sh
 npm run dev         # Start the development server
-npm run type-check  # Check TypeScript and Vue types
+npm run type-check  # Check TypeScript types
 npm run build       # Type-check and create a production build
 npm run preview     # Preview the production build
 ```
