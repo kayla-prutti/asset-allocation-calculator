@@ -12,7 +12,7 @@
 }
 .allocation-donut-track {
   fill: none;
-  stroke: #dce5de;
+  stroke: var(--line);
   stroke-width: 17;
 }
 .allocation-donut-segment {
@@ -35,7 +35,7 @@
   opacity: 1;
 }
 .allocation-donut-segment:focus-visible {
-  filter: drop-shadow(0 0 0.15rem rgba(19, 37, 31, 0.8));
+  filter: drop-shadow(0 0 0.2rem rgba(79, 227, 160, 0.85));
 }
 .allocation-chart-center {
   position: absolute;
@@ -62,21 +62,22 @@
   min-width: 86px;
   gap: 2px;
   padding: 7px 9px;
-  color: #fff;
+  color: var(--ink);
   font-size: 0.69rem;
   line-height: 1.2;
   text-align: center;
   pointer-events: none;
-  background: var(--ink);
+  background: var(--canvas);
+  border: 1px solid var(--line);
   border-radius: 7px;
-  box-shadow: 0 6px 16px rgba(19, 37, 31, 0.18);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   transform: translate(-50%, -50%);
   transition:
     left 150ms ease,
     top 150ms ease;
 }
 .chart-tooltip span {
-  color: #d6eddd;
+  color: var(--forest);
   font-weight: 750;
 }
 

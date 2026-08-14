@@ -120,9 +120,17 @@ const isAllocationIncomplete = computed(
         href="#calculator"
         aria-label="MyChain portfolio planner home"
       >
-        <span class="brand-mark" aria-hidden="true"
-          ><i></i><i></i><i></i><i></i></span
-        ><span>MyChain</span>
+        <svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true">
+          <path
+            class="brand-mark-left"
+            d="M10 1 L2.21 5.5 L2.21 14.5 L10 19 Z"
+          />
+          <path
+            class="brand-mark-right"
+            d="M10 1 L17.79 5.5 L17.79 14.5 L10 19 Z"
+          />
+        </svg>
+        <span>MyChain</span>
       </a>
       <span class="nav-context">Portfolio planner</span>
     </nav>

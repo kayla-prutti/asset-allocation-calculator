@@ -2,15 +2,22 @@
   --font-sans:
     -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial,
     sans-serif;
-  --ink: #13251f;
-  --muted: #62716b;
-  --canvas: #f5f5ee;
-  --paper: #fffefa;
-  --line: #dce1d8;
-  --forest: #1e5b46;
-  --coral: #f28c6a;
-  --soft-green: #e8f1e8;
-  --danger: #b53b2a;
+  --ink: #eaf6ef;
+  --muted: #85998e;
+  --canvas: #070c0a;
+  --paper: #101a15;
+  --soft-green: #0c1613;
+  --surface: #16221c;
+  --surface-hover: #1d2b23;
+  --line: #22312a;
+  --forest: #4fe3a0;
+  --forest-strong: #34c586;
+  --on-forest: #06140d;
+  --coral: #ff9466;
+  --danger: #ff6b5c;
+  --danger-tint: #2a1512;
+  --warning: #ffb86b;
+  --warning-tint: #241c0d;
   --field-gap: 9px;
   --label-size: 0.82rem;
   --control-height: 62px;
@@ -60,20 +67,15 @@ button {
   text-decoration: none;
 }
 .brand-mark {
-  display: grid;
-  grid-template-columns: repeat(2, 7px);
-  gap: 2px;
-  transform: rotate(45deg);
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
 }
-.brand-mark i {
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background: var(--forest);
+.brand-mark-left {
+  fill: var(--coral);
 }
-.brand-mark i:nth-child(2),
-.brand-mark i:nth-child(3) {
-  background: var(--coral);
+.brand-mark-right {
+  fill: var(--forest);
 }
 .nav-context {
   color: var(--muted);
@@ -128,7 +130,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 24px;
   overflow: visible;
-  box-shadow: 0 20px 50px rgba(21, 46, 36, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 h2 {
   margin: 4px 0 0;

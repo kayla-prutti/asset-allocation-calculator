@@ -18,23 +18,23 @@
   color: var(--forest);
   font-size: 0.72rem;
   font-weight: 750;
-  background: #f8fbf2;
-  border: 1px solid #cbdbcc;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 999px;
 }
 .live-status i {
   width: 7px;
   height: 7px;
-  background: #43a76b;
+  background: var(--forest);
   border-radius: 50%;
 }
 .live-status.unavailable {
-  color: #815126;
-  background: #fff7ec;
-  border-color: #f1d6ac;
+  color: var(--warning);
+  background: var(--warning-tint);
+  border-color: var(--warning);
 }
 .live-status.unavailable i {
-  background: #e09939;
+  background: var(--warning);
 }
 .mix-overview {
   display: flex;
@@ -70,8 +70,8 @@
   margin-top: 32px;
   padding: 20px;
   color: var(--ink);
-  background: #fff8ef;
-  border: 1px solid #eed1b0;
+  background: var(--warning-tint);
+  border: 1px solid var(--warning);
   border-radius: 14px;
 }
 .exchange-rate-error p {
@@ -94,7 +94,7 @@
 }
 .error-message {
   margin-top: 5px;
-  color: #6f5846;
+  color: var(--ink);
   font-size: 0.83rem;
   line-height: 1.45;
   white-space: pre-line;
@@ -102,7 +102,7 @@
 .error-retry {
   margin-top: 12px;
   padding: 8px 11px;
-  color: #fff;
+  color: var(--on-forest);
   font-size: 0.8rem;
   font-weight: 750;
   background: var(--forest);
@@ -110,7 +110,7 @@
   border-radius: 7px;
 }
 .error-retry:hover {
-  background: #164636;
+  background: var(--forest-strong);
 }
 
 @media (max-width: 760px) {

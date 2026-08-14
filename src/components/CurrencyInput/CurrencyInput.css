@@ -22,8 +22,8 @@
   height: var(--control-height);
   padding: 0 17px;
   color: var(--ink);
-  background: #fff;
-  border: 1.5px solid #b9c7bd;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
   border-radius: 12px;
   transition:
     border-color 150ms ease,
@@ -31,7 +31,7 @@
 }
 .currency-input:focus-within {
   border-color: var(--forest);
-  box-shadow: 0 0 0 4px rgba(30, 91, 70, 0.12);
+  box-shadow: 0 0 0 4px rgba(79, 227, 160, 0.16);
 }
 .currency-input > span {
   color: var(--forest);
@@ -50,12 +50,12 @@
   outline: 0;
 }
 .currency-input input::placeholder {
-  color: #a6b0a8;
+  color: var(--muted);
   font-weight: 600;
 }
 .currency-input.invalid {
   border-color: var(--danger);
-  box-shadow: 0 0 0 4px rgba(181, 59, 42, 0.1);
+  box-shadow: 0 0 0 4px rgba(255, 107, 92, 0.16);
 }
 .currency-error {
   margin: 0;
